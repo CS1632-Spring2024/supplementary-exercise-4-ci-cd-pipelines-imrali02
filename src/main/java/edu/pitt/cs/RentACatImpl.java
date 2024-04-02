@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RentACatImpl implements RentACat {
+	String newline = System.lineSeparator();
 
-	private ArrayList<Cat> cats = new ArrayList<Cat>();
+		private ArrayList<Cat> cats = new ArrayList<Cat>();
 
 	/**
 	 * Return a cat. This should call the .returnCat() method on the cat for the
@@ -18,7 +19,21 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean returnCat(int id) {
-		// TODO: Fill in
+		
+		for (Cat c : cats) {
+			
+			if ((c.getId() == id) && c.getRented()==true) {
+				c.returnCat();
+				System.out.println("Welcome back, " +c.getName()+"!");
+			
+				return true;
+
+			}
+			if (c.getId() == id&&c.getRented()==false){
+				System.out.println(c.getName()+" is already here!");
+			}
+		}
+	
 		return false;
 	}
 
@@ -33,8 +48,23 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean rentCat(int id) {
-		// TODO: Fill in
+		for (Cat c : cats) {
+			
+			if (c.getId() == id) {
+				if (c.getRented()==true){
+					System.out.println("Sorry, "+c.getName()+ " is not here!");
+					return false;
+				}
+				else{
+				c.rentCat();
+				System.out.println(c.getName()+" has been rented.");
+				return true;
+				}
+			}
+		}
+	
 		return false;
+	
 	}
 
 	/**
@@ -47,8 +77,15 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean renameCat(int id, String name) {
-		// TODO: Fill in
-		return false;
+		Cat c = getCat(id);
+        if (c != null) {
+            c.renameCat(name);
+            return true;
+        } else {
+			//System.out.println("Invalid Cat ID.");
+            return false;
+        }
+
 	}
 
 	/**
@@ -62,8 +99,22 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public String listCats() {
-		// TODO: Fill in
-		return "WRITE CODE FOR THIS";
+		 ArrayList<String> catsList = new ArrayList<>();
+		
+		for (Cat c : cats) {
+			
+			if (c.getRented()==false){
+				catsList.add(c.toString());
+			}
+		
+		}
+	
+		String resultString = "";
+
+		for (String s : catsList) {
+			resultString += (s + "\n");
+		}
+		return resultString;
 	}
 
 	/**
@@ -78,7 +129,9 @@ public class RentACatImpl implements RentACat {
 
 		// null check
 		if (cats == null) {
+			System.out.println("Invalid cat ID.");
 			return null;
+			
 		}
 
 		// Loop through every cat in the cat list
@@ -130,7 +183,7 @@ public class RentACatImpl implements RentACat {
 			try {
 				option = sc.nextInt();
 				switch (option) {
-					case 1:
+					case 1:				
 						System.out.println("Cats for Rent");
 						System.out.print(rc.listCats());
 						break;
