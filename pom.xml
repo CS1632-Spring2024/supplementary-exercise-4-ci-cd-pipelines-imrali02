@@ -35,6 +35,15 @@
     <url>http://github.com/wonsunahn/CS1632_CICD_JUnit/tree/master</url>
   </scm>
 
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/CS1632-Spring2024/supplementary-exercise-4-ci-cd-pipelines-imrali02</url>
+      <artifactId>cs1632-cicd-pipelines-iah14</artifactId>
+    </repository>
+  </distributionManagement>
+
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
