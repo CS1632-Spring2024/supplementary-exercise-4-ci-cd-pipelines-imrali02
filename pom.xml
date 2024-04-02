@@ -40,7 +40,6 @@
       <id>github</id>
       <name>GitHub Apache Maven Packages</name>
       <url>https://maven.pkg.github.com/CS1632-Spring2024/supplementary-exercise-4-ci-cd-pipelines-imrali02</url>
-      <artifactId>cs1632-cicd-pipelines-iah14</artifactId>
     </repository>
   </distributionManagement>
 
